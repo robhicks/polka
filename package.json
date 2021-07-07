@@ -22,6 +22,7 @@
     "trouter": "^2.0.1"
   },
   "scripts": {
-    "build": "npx rollup -c"
+    "build": "npx rollup -c",
+    "dev": "npx rollup -cw"
   }
 }
