@@ -34,6 +34,7 @@ class Polka extends Router {
 		this.handler = this.handler.bind(this);
 		this.onError = opts.onError || onError; // catch-all handler
 		this.onNoMatch = opts.onNoMatch || this.onError.bind(null, { code:404 });
+    (this.server = this.server || http.createServer()).on('request', this.handler);
 	}
 
 	add(method, pattern, ...fns) {
@@ -63,7 +64,6 @@ class Polka extends Router {
 	}
 
 	listen() {
-		(this.server = this.server || http.createServer()).on('request', this.handler);
 		this.server.listen.apply(this.server, arguments);
 		return this;
 	}
